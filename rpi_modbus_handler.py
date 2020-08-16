@@ -22,7 +22,7 @@ NEO_DEFAULTS = {
     'blue' :        0
 }
 
-# sudo pip3 install pymodbus, twisted, service_identity
+# sudo pip3 install pymodbus twisted service_identity adafruit-circuitpython-neopixel
 
 class ModbusHandler(Thread):
     def __init__(self, neo_handler, serial_handler, logger=None):

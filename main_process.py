@@ -8,6 +8,8 @@ from rpi_modbus_handler import ModbusHandler
 import logging, signal
 from systemd.journal import JournaldLogHandler
 
+# sudo pip3 install pymodbus twisted service_identity adafruit-circuitpython-neopixel systemd
+
 # get an instance of the logger object this module will use
 logger = logging.getLogger(__name__)
 

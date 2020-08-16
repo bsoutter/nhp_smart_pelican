@@ -52,12 +52,10 @@ class NeoHandler(Thread):
 
     # Update colour with any function (obsolete)
     def _update_colour(self,col):
-        print(col)
         self.colour = col
 
     # For writing preset functions, i.e. red pulsing
     def set_function(self, state, col = -1, freq = -1):
-        print(state)
         if col != -1:
             self.colour = col
         if freq != -1:
@@ -115,10 +113,6 @@ class NeoHandler(Thread):
         while not self.stop:
             # Update colour/delay time at start of each cycle
             colour = self.colour
-            print(colour)
-            print(self.brightness)
-            print(self.period_delay)
-            print()
             period_delay = self.period_delay
             
             # Reset brightness if state isn't pulsing
@@ -220,7 +214,6 @@ class NeoHandler(Thread):
 
             # Invalid amount of states
             else:   
-                print("State doesn't exist")
                 self.neo_state = self.neo_state_off
             period = not period
         self.exit()
