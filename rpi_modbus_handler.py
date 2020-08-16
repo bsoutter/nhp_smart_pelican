@@ -9,8 +9,8 @@ from twisted.internet.task import LoopingCall
 import os
 
 initial_volume = 35 # Initial volume register
-ocr_default_file = "/home/pi/Desktop/PythonScripts/ocr_default_values.txt"
-neo_default_file = "/home/pi/Desktop/PythonScripts/neo_default_values.txt"
+ocr_default_file = "/home/pi/Desktop/MainProcess/ocr_default_values.txt"
+neo_default_file = "/home/pi/Desktop/MainProcess/neo_default_values.txt"
 modbus_map_size = 100 # How many registers in the Modbus map (starting at add 0)
 
 NEO_DEFAULTS = {
@@ -25,13 +25,15 @@ NEO_DEFAULTS = {
 # sudo pip3 install pymodbus, twisted, service_identity
 
 class ModbusHandler(Thread):
-    def __init__(self, neo_handler, serial_handler):
+    def __init__(self, neo_handler, serial_handler, logger=None):
+        self._logger = logger
         self._map_data = [0] * modbus_map_size
         self._neo_handler = neo_handler
         self._serial_handler = serial_handler
         self._esp_board_error = False
         self._neo_initialised = False
 
+        self._logger.info("Modbus Thread Started")
         Thread.__init__(self)
 
     def loop_call(self, context):
@@ -187,6 +189,10 @@ class ModbusHandler(Thread):
                 self._map_data = context[0][0].getValues(3, 0, count=modbus_map_size)
 
     def stop_server(self):
+        # If process is stopped, stop outputting on ESPs
+        for i in range(3):
+            self._logger.info("Stopping Board No {}".format(i+1))
+            self._serial_handler.set_values(board_no=i+1, v_amp=0,i_amp=0)
         StopServer()
 
     def encode_16bit_int(self,val):

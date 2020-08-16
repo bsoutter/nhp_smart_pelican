@@ -1,0 +1,12 @@
+[Unit]
+Description=Modbus TCP Server, NEO Handler thread and USRT to ESPs
+After=networking.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /home/pi/Desktop/MainProcess/main_process.py
+StandardInput=tty-force
+User=root
+
+[Install]
+WantedBy=multi-user.target
