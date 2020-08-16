@@ -1,0 +1,1 @@
+{'function': 2, 'frequency': 10, 'brightness': 97, 'red': 2, 'green': 1, 'blue': 3}

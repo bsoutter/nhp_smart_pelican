@@ -1,0 +1,1 @@
+[{'v_amp': 200, 'i_amp': 121, 'i_shift': 0}, {'v_amp': 200, 'i_amp': 121, 'i_shift': 0}, {'v_amp': 200, 'i_amp': 121, 'i_shift': 0}, {'sys_v_amp': 200, 'sys_i_amp': 121, 'sys_i_shift': 0}]
